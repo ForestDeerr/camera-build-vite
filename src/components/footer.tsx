@@ -1,32 +1,35 @@
 
+function Footer(): JSX.Element {
 
-
-      <footer className="footer">
+  return (
+    <footer className="footer">
       <div className="container">
-        <div className="footer__info"><a className="footer__logo" href="index.html" aria-label="Переход на главную">
+        <div className="footer__info">
+          <a className="footer__logo" href="index.html" aria-label="Переход на главную">
             <svg width="100" height="36" aria-hidden="true">
-              <use xlink:href="#icon-logo-mono"></use>
-            </svg></a>
+              <use xlinkHref="#icon-logo-mono"></use>
+            </svg>
+          </a>
           <p className="footer__description">Интернет-магазин фото- и видеотехники</p>
           <ul className="social">
             <li className="social__item">
               <a className="link" href="#" aria-label="Переход на страницу вконтатке">
                 <svg width="20" height="20" aria-hidden="true">
-                  <use xlink:href="#icon-vk"></use>
+                  <use xlinkHref="#icon-vk"></use>
                 </svg>
               </a>
             </li>
             <li className="social__item">
               <a className="link" href="#" aria-label="Переход на страницу pinterest">
                 <svg width="20" height="20" aria-hidden="true">
-                  <use xlink:href="#icon-pinterest"></use>
+                  <use xlinkHref="#icon-pinterest"></use>
                 </svg>
               </a>
             </li>
             <li className="social__item">
               <a className="link" href="#" aria-label="Переход на страницу reddit">
                 <svg width="20" height="20" aria-hidden="true">
-                  <use xlink:href="#icon-reddit"></use>
+                  <use xlinkHref="#icon-reddit"></use>
                 </svg>
               </a>
             </li>
@@ -87,3 +90,7 @@
         </ul>
       </div>
     </footer>
+  );
+}
+
+export default Footer;
