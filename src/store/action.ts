@@ -1,3 +1,7 @@
 import {createAction} from '@reduxjs/toolkit';
 
-export const getOffersActive = createAction('mainPage/getOffersActive');
+import { CamerasType } from '../types/cameras';
+
+export const setCameras = createAction<CamerasType>('date/loadCameras');
+
+

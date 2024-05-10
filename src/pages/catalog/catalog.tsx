@@ -4,7 +4,20 @@ import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';
 
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useEffect } from 'react';
+import { fetchListCameras } from '../../store/api-actions';
+
 function Catalog(): JSX.Element {
+
+  const dispatch = useAppDispatch();
+
+  useEffect(()=>{
+    dispatch(fetchListCameras());
+
+  }, [dispatch]);
+
+  const cameras = useAppSelector((state)=>state.cameras);
 
   return (
     <div className="wrapper">
@@ -20,7 +33,7 @@ function Catalog(): JSX.Element {
                 <div className="catalog__aside"><img src="img/banner.png" />
                 </div>
                 <div className="catalog__content">
-                  <CatalogCards />
+                  <CatalogCards cameras={cameras} />
                 </div>
               </div>
             </div>
