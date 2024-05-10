@@ -1,17 +1,17 @@
 import { CameraType } from '../types/cameras';
 import Rate from './rate';
 
+const STARS_COUNT = 5;
+const STARS = Array.from({ length: STARS_COUNT });
+
 type CardProps = {
   cameraCard: CameraType;
 
 }
 
-
 function Card({cameraCard}: CardProps): JSX.Element {
 
   const {name, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, rating, reviewCount, price } = cameraCard;
-
-  const quantityStarsRating = [1, 2, 3, 4, 5];
 
   return (
 
@@ -24,13 +24,9 @@ function Card({cameraCard}: CardProps): JSX.Element {
       </div>
       <div className="product-card__info">
         <div className="rate product-card__rate">
-
-
-          {quantityStarsRating.map((camera, id) => (
+          {STARS.map((_, id) => (
             <Rate key={id} rating={rating} id={id}/>
           ))}
-
-
           <p className="visually-hidden">Рейтинг: {rating}</p>
           <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewCount}</p>
         </div>
