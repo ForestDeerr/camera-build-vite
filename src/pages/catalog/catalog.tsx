@@ -14,8 +14,8 @@ function Catalog(): JSX.Element {
 
   useEffect(()=>{
     dispatch(fetchListCameras());
-
   }, [dispatch]);
+
 
   const cameras = useAppSelector((state)=>state.cameras);
 

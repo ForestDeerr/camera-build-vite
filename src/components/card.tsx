@@ -1,5 +1,8 @@
 import { CameraType } from '../types/cameras';
+import { Link } from 'react-router-dom';
+
 import Rate from './rate';
+import CardRate from './card-rate';
 
 const STARS_COUNT = 5;
 const STARS = Array.from({ length: STARS_COUNT });
@@ -17,19 +20,15 @@ function Card({cameraCard}: CardProps): JSX.Element {
 
     <div className="product-card">
       <div className="product-card__img">
-        <picture>
-          <source type="image/webp" srcSet={`${previewImgWebp}, ${previewImgWebp2x} 2x`} />
-          <img src="img/content/img1.jpg" srcSet={`${previewImg}, ${previewImg2x} 2x`} width="280" height="240" alt={name} />
-        </picture>
+        <Link to={`camera/${cameraCard.id}`}>
+          <picture>
+            <source type="image/webp" srcSet={`${previewImgWebp}, ${previewImgWebp2x} 2x`} />
+            <img src="img/content/img1.jpg" srcSet={`${previewImg}, ${previewImg2x} 2x`} width="280" height="240" alt={name} />
+          </picture>
+        </Link>
       </div>
       <div className="product-card__info">
-        <div className="rate product-card__rate">
-          {STARS.map((_, id) => (
-            <Rate key={id} rating={rating} id={id}/>
-          ))}
-          <p className="visually-hidden">Рейтинг: {rating}</p>
-          <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>{reviewCount}</p>
-        </div>
+        <CardRate rating={rating} reviewCount={reviewCount} />
         <p className="product-card__title">{name}</p>
         <p className="product-card__price"><span className="visually-hidden">Цена:</span>{price.toLocaleString()} ₽
         </p>
