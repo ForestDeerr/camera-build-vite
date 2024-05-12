@@ -4,17 +4,16 @@ import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';
 
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchListCameras } from '../../store/api-actions';
+import { store } from '../../store';
 
 function Catalog(): JSX.Element {
 
-  const dispatch = useAppDispatch();
-
   useEffect(()=>{
-    dispatch(fetchListCameras());
-  }, [dispatch]);
+    store.dispatch(fetchListCameras());
+  }, []);
 
 
   const cameras = useAppSelector((state)=>state.cameras);

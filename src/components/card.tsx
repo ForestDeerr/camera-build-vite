@@ -1,11 +1,8 @@
 import { CameraType } from '../types/cameras';
 import { Link } from 'react-router-dom';
 
-import Rate from './rate';
 import CardRate from './card-rate';
 
-const STARS_COUNT = 5;
-const STARS = Array.from({ length: STARS_COUNT });
 
 type CardProps = {
   cameraCard: CameraType;
