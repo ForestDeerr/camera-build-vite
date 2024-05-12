@@ -12,8 +12,6 @@ import { fetchCameraAction } from '../../store/api-actions';
 import { store } from '../../store';
 
 function Camera(): JSX.Element {
-
-
   const params = useParams();
   const cameraId = params.id;
 
@@ -26,14 +24,7 @@ function Camera(): JSX.Element {
     return <> Loading</>;
   }
 
-  console.log(camera);
-
-  // const cameras = useAppSelector((state)=>state.cameras);
-  // const camera = cameras.filter((item) => item.id === Number(cameraId))[0];
-
   const {previewImgWebp, previewImgWebp2x, previewImg2x, rating, name, reviewCount, price} = camera;
-
-
 
   return (
 
@@ -51,8 +42,6 @@ function Camera(): JSX.Element {
                     <img src="img/content/img1.jpg" srcSet={`${previewImg2x} 2x`} width="560" height="480" alt={name} />
                   </picture>
                 </div>
-
-
                 <div className="product__content">
                   <h1 className="title title--h3">{name}</h1>
                   <CardRate rating={rating} reviewCount={reviewCount} />

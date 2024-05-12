@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {setCameras, setCamera} from './action';
+import {getCameras, getCamera} from './action';
 import { CamerasType, CameraType } from '../types/cameras';
 
 type InitalState = {
@@ -15,14 +15,12 @@ const initialState: InitalState = {
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(setCameras, (state, action) => {
+    .addCase(getCameras, (state, action) => {
       state.cameras = action.payload;
     })
-    .addCase(setCamera, (state, action) => {
+    .addCase(getCamera, (state, action) => {
       state.camera = action.payload;
     });
-
-
 });
 
 export {reducer};
