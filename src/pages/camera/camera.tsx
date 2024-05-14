@@ -2,13 +2,13 @@ import Header from '../../components/header';
 import Breadcrumbs from '../../components/breadcrumbs';
 import CardRate from '../../components/card-rate';
 import ProductTabs from '../../components/product-tabs';
-import PageContent from '../../components/page-content';
+import ReviewBlock from '../../components/review-block';
 import Footer from '../../components/footer';
 
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppSelector} from '../../hooks';
-import { fetchCameraAction } from '../../store/api-actions';
+import { fetchCameraAction, fetchRequests } from '../../store/api-actions';
 import { store } from '../../store';
 
 function Camera(): JSX.Element {
@@ -17,12 +17,19 @@ function Camera(): JSX.Element {
 
   useEffect(() => {
     store.dispatch(fetchCameraAction(cameraId));
+    store.dispatch(fetchRequests(cameraId));
   }, [cameraId]);
 
   const camera = useAppSelector((state)=>state.camera);
+  const reviews = useAppSelector((state)=>state.reviews);
+
   if(!camera) {
     return <> Loading</>;
   }
+  if(!reviews) {
+    return <> Loading</>;
+  }
+
 
   const {previewImgWebp, previewImgWebp2x, previewImg2x, rating, name, reviewCount, price} = camera;
 
@@ -56,7 +63,7 @@ function Camera(): JSX.Element {
               </div>
             </section>
           </div>
-          <PageContent />
+          <ReviewBlock reviews={reviews} />
         </div>
       </main>
       <a className="up-btn" href="#header">

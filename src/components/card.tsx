@@ -6,7 +6,6 @@ import CardRate from './card-rate';
 
 type CardProps = {
   cameraCard: CameraType;
-
 }
 
 function Card({cameraCard}: CardProps): JSX.Element {

@@ -2,7 +2,8 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { CamerasType, CameraType } from '../types/cameras.js';
-import { getCameras, getCamera } from './action';
+import { ReviewsType } from '../types/reviews.js';
+import { getCameras, getCamera, getRequests } from './action';
 import { APIRoute } from '../const';
 
 
@@ -31,3 +32,15 @@ export const fetchCameraAction = createAsyncThunk<void, number | string | undefi
   },
 );
 
+export const fetchRequests = createAsyncThunk<void, number | string | undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchRequests',
+  async (_arg, {dispatch, extra: api}) => {
+    const id = _arg;
+    const {data} = await api.get<ReviewsType>(`${APIRoute.Cameras}/${id}/reviews`);
+    dispatch(getRequests(data));
+  },
+);
