@@ -3,9 +3,9 @@ import Breadcrumbs from '../../components/breadcrumbs';
 import CardRate from '../../components/card-rate';
 import ProductTabs from '../../components/product-tabs';
 import ReviewBlock from '../../components/review-block';
+import ButtonUp from '../../components/button-up';
 import Footer from '../../components/footer';
 
-import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppSelector} from '../../hooks';
@@ -15,8 +15,6 @@ import { store } from '../../store';
 function Camera(): JSX.Element {
   const params = useParams();
   const cameraId = params.id;
-
-  const topRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     store.dispatch(fetchCameraAction(cameraId));
@@ -38,7 +36,7 @@ function Camera(): JSX.Element {
 
   return (
 
-    <div ref={topRef} className="wrapper">
+    <div className="wrapper">
       <Header />
       <main>
         <div className="page-content">
@@ -69,17 +67,7 @@ function Camera(): JSX.Element {
           <ReviewBlock reviews={reviews} />
         </div>
       </main>
-      <button className="up-btn" onClick={()=>{
-        topRef.current?.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }}
-      >
-        <svg width="12" height="18" aria-hidden="true">
-          <use xlinkHref="#icon-arrow2"></use>
-        </svg>
-      </button>
-
+      <ButtonUp />
       <Footer />
     </div>
   );

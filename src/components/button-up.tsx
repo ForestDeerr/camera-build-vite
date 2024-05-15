@@ -1,14 +1,15 @@
-type ButtonUpProps = {
-  ref: HTMLDivElement;
-}
 
 
-function ButtonUp({ref}: ButtonUpProps): JSX.Element {
+function ButtonUp(): JSX.Element {
+
+
   return (
     <button className="up-btn" onClick={()=>{
-      ref.current?.scrollIntoView({
+      window.scrollTo({
+        top: 0,
         behavior: 'smooth'
       });
+
     }}
     >
       <svg width="12" height="18" aria-hidden="true">
