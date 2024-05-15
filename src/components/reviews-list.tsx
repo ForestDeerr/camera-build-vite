@@ -1,3 +1,6 @@
+import dayjs from 'dayjs';
+import 'dayjs/locale/ru';
+dayjs.locale('ru');
 
 import ReviewRate from './review-rate';
 import { ReviewType } from '../types/reviews';
@@ -7,12 +10,13 @@ type ReviewsListProps = {
 }
 
 function ReviewsList({oneReview}: ReviewsListProps): JSX.Element {
-  const {userName, rating, advantage, disadvantage, review} = oneReview;
+  const {userName, rating, advantage, disadvantage, review, createAt} = oneReview;
+
   return (
     <li className="review-card">
       <div className="review-card__head">
         <p className="title title--h4">{userName}</p>
-        <time className="review-card__data" dateTime="2022-04-13">13 апреля</time>
+        <time className="review-card__data" dateTime="2022-04-13">{dayjs(createAt).format('DD MMMM')}</time>
       </div>
       <ReviewRate rating={rating} />
       <ul className="review-card__list">

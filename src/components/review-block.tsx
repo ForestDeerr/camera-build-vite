@@ -23,7 +23,7 @@ function ReviewBlock({reviews}: ReviewBlockProps): JSX.Element {
             {/* <!--<button className="btn" type="button">Оставить свой отзыв</button>--> */}
           </div>
           <ul className="review-block__list">
-            {reviews.slice(0, quantityCommentsDisplayed()).map((oneReview) => (
+            {[...reviews].reverse().slice(0, quantityCommentsDisplayed()).map((oneReview) => (
               <ReviewsList key={oneReview.id} oneReview={oneReview} />
             ))}
           </ul>
