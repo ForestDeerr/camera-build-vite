@@ -1,6 +1,4 @@
 import dayjs from 'dayjs';
-import 'dayjs/locale/ru';
-dayjs.locale('ru');
 
 import ReviewRate from './review-rate';
 import { ReviewType } from '../types/reviews';
