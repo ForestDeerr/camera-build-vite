@@ -1,12 +1,11 @@
 import Header from '../../components/header';
-import Breadcrumbs from '../../components/breadcrumbs';
 import CardRate from '../../components/card-rate';
 import ProductTabs from '../../components/product-tabs';
 import ReviewBlock from '../../components/review-block';
 import ButtonUp from '../../components/button-up';
 import Footer from '../../components/footer';
 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppSelector} from '../../hooks';
 import { fetchCameraAction, fetchRequests } from '../../store/api-actions';
@@ -40,7 +39,28 @@ function Camera(): JSX.Element {
       <Header />
       <main>
         <div className="page-content">
-          <Breadcrumbs />
+          <div className="breadcrumbs">
+            <div className="container">
+              <ul className="breadcrumbs__list">
+                <li className="breadcrumbs__item">
+                  <Link to={'/'} className="breadcrumbs__link">Главная
+                    <svg width="5" height="8" aria-hidden="true">
+                      <use xlinkHref="#icon-arrow-mini"></use>
+                    </svg>
+                  </Link>
+                </li>
+                <li className="breadcrumbs__item">
+                  <Link to={'/'} className="breadcrumbs__link">Каталог
+                    <svg width="5" height="8" aria-hidden="true">
+                      <use xlinkHref="#icon-arrow-mini"></use>
+                    </svg>
+                  </Link>
+                </li>
+                <li className="breadcrumbs__item"><span className="breadcrumbs__link breadcrumbs__link--active">{name}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="page-content__section">
             <section className="product">
               <div className="container">

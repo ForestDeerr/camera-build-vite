@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 function Footer(): JSX.Element {
 
@@ -40,8 +41,8 @@ function Footer(): JSX.Element {
             <p className="footer__title">Навигация</p>
             <ul className="footer__list">
               <li className="footer__item">
-                <a className="link" href="#">Каталог
-                </a>
+                <Link to={'/'} className="link" >Каталог
+                </Link>
               </li>
               <li className="footer__item">
                 <a className="link" href="#">Гарантии
