@@ -1,7 +1,9 @@
+import ModalWindow from './modal-window';
+import CardRate from './card-rate';
+
 import { CameraType } from '../types/cameras';
 import { Link } from 'react-router-dom';
-
-import CardRate from './card-rate';
+import { useState } from 'react';
 
 
 type CardProps = {
@@ -9,8 +11,13 @@ type CardProps = {
 }
 
 function Card({cameraCard}: CardProps): JSX.Element {
-
   const {name, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, rating, reviewCount, price } = cameraCard;
+  const [active, setActiv] = useState(false);
+
+  const openPopUp = () =>{
+    setActiv(!active);
+    document.body.style.overflow = 'hidden';
+  };
 
   return (
 
@@ -30,11 +37,15 @@ function Card({cameraCard}: CardProps): JSX.Element {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button className="btn btn--purple product-card__btn" type="button">Купить
+        <button onClick={()=>{
+          {openPopUp();}
+        }} className="btn btn--purple product-card__btn" type="button"
+        >Купить
         </button>
         <a className="btn btn--transparent" href="#">Подробнее
         </a>
       </div>
+      <ModalWindow active={active} setActiv={setActiv} cameraCard={cameraCard}/>
     </div>
 
   );
