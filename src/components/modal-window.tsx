@@ -19,11 +19,6 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
     }
   };
 
-  const closeModal = () =>{
-    document.body.style.overflow = '';
-    setActiv(false);
-  };
-
   useEffect(()=>{
     window.addEventListener('keydown', onDocumentKeydown);
     return ()=>{
@@ -31,6 +26,10 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
     };
   },[]);
 
+  const closeModal = () =>{
+    document.body.style.overflow = '';
+    setActiv(false);
+  };
 
   return (
     <div className={`modal ${active ? 'is-active' : ''}`} >

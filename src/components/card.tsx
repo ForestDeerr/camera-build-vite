@@ -12,6 +12,7 @@ type CardProps = {
 
 function Card({cameraCard}: CardProps): JSX.Element {
   const {name, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, rating, reviewCount, price } = cameraCard;
+
   const [active, setActiv] = useState(false);
 
   const openPopUp = () =>{
@@ -19,8 +20,8 @@ function Card({cameraCard}: CardProps): JSX.Element {
     document.body.style.overflow = 'hidden';
   };
 
-  return (
 
+  return (
     <div className="product-card">
       <div className="product-card__img">
         <Link to={`camera/${cameraCard.id}`}>
