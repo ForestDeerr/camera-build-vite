@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { CameraType } from '../types/cameras';
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
 type ModalWindowProps = {
   active: boolean;
   setActiv: any ;
@@ -10,33 +12,31 @@ type ModalWindowProps = {
 function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Element {
   const {name, vendorCode, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, level, category, price } = cameraCard;
 
-  const closePopUp = () =>{
-    setActiv(!active);
-    document.body.style.overflow = '';
+  const onDocumentKeydown = () =>{
+    if (isEscapeKey) {
+      document.body.style.overflow = '';
+      setActiv(false);
+    }
   };
 
-
-  const closeModal = (e) =>{
-    if (e.key === 'Escape') {
-      setActiv(!active);
-    }
-
+  const closeModal = () =>{
+    document.body.style.overflow = '';
+    setActiv(false);
   };
 
   useEffect(()=>{
-    window.addEventListener('keydown', closeModal);
+    window.addEventListener('keydown', onDocumentKeydown);
     return ()=>{
-      document.addEventListener('keydown', closeModal);
+      document.removeEventListener('keydown', onDocumentKeydown);
     };
   },[]);
 
 
   return (
-
     <div className={`modal ${active ? 'is-active' : ''}`} >
       <div className="modal__wrapper">
         <div className="modal__overlay" onClick={()=>{
-          {closePopUp();}
+          {closeModal();}
         }}
         >
         </div>
@@ -80,7 +80,7 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
           </div>
 
           <button onClick={()=>{
-            {closePopUp();}
+            {closeModal();}
           }} className="cross-btn" type="button" aria-label="Закрыть попап"
           >
             <svg width="10" height="10" aria-hidden="true">
