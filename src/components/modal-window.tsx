@@ -1,19 +1,23 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { CameraType } from '../types/cameras';
 
-const isEscapeKey = (evt) => evt.key === 'Escape';
+import { isValidPhoneNumber } from '../utils/is-Valid-Phone-Number';
+import { formatPhoneNumber } from '../utils/format-Phone-Number';
+import { isEscapeKey } from '../utils/util';
 
 type ModalWindowProps = {
   active: boolean;
-  setActiv: any ;
+  setActiv: boolean ;
   cameraCard: CameraType;
+
 }
+
 
 function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Element {
   const {name, vendorCode, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, level, category, price } = cameraCard;
 
-  const onDocumentKeydown = () =>{
-    if (isEscapeKey) {
+  const onDocumentKeydown = (e) =>{
+    if (isEscapeKey(e)) {
       document.body.style.overflow = '';
       setActiv(false);
     }
@@ -30,6 +34,9 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
     document.body.style.overflow = '';
     setActiv(false);
   };
+
+  const [number, setNumber] = useState('');
+
 
   return (
     <div className={`modal ${active ? 'is-active' : ''}`} >
@@ -61,23 +68,30 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
           </div>
           <div className="custom-input form-review__item">
             <label>
+
               <span className="custom-input__label">Телефон
                 <svg width="9" height="9" aria-hidden="true">
                   <use href="#icon-snowflake"></use>
                 </svg>
               </span>
-              <input type="tel" name="user-tel" placeholder="Введите ваш номер" required />
+              <input type="tel" name="user-tel" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Введите ваш номер" required />
             </label>
+
             <p className="custom-input__error">Нужно указать номер</p>
+
           </div>
+          {!isValidPhoneNumber(number) && <p>не верно указан номер</p>}
           <div className="modal__buttons">
-            <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button">
+            {isValidPhoneNumber(number) &&
+            <button onClick={()=>{
+              formatPhoneNumber(number);
+            }} className="btn btn--purple modal__btn modal__btn--fit-width" type="button"
+            >
               <svg width="24" height="16" aria-hidden="true">
                 <use xlinkHref="#icon-add-basket"></use>
               </svg>Заказать
-            </button>
+            </button> }
           </div>
-
           <button onClick={()=>{
             {closeModal();}
           }} className="cross-btn" type="button" aria-label="Закрыть попап"
