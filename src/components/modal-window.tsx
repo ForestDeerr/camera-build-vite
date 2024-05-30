@@ -85,6 +85,7 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
             {isValidPhoneNumber(number) &&
             <button onClick={()=>{
               formatPhoneNumber(number);
+              closeModal();
             }} className="btn btn--purple modal__btn modal__btn--fit-width" type="button"
             >
               <svg width="24" height="16" aria-hidden="true">
