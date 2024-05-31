@@ -76,11 +76,8 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
               </span>
               <input type="tel" name="user-tel" value={number} onChange={(e) => setNumber(e.target.value)} placeholder="Введите ваш номер" required />
             </label>
-
-            <p className="custom-input__error">Нужно указать номер</p>
-
+            {!isValidPhoneNumber(number) && <p className="custom-input__error" style={{opacity:'1' }}>Нужно указать номер </p>}
           </div>
-          {!isValidPhoneNumber(number) && <p>не верно указан номер</p>}
           <div className="modal__buttons">
             {isValidPhoneNumber(number) &&
             <button onClick={()=>{
