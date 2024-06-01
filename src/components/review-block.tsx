@@ -28,7 +28,7 @@ function ReviewBlock({reviews}: ReviewBlockProps): JSX.Element {
             ))}
           </ul>
           <div className="review-block__buttons">
-            <button onClick={()=>setQuantity(quantity + 3)} className={`btn btn--purple ${quantity < reviews.length ? '' : 'disabled'}`} type="button">Показать больше отзывов ({quantity}/{reviews.length})
+            <button onClick={()=>setQuantity(quantity + 3)} className={`btn btn--purple ${quantity < reviews.length ? '' : 'disabled'}`} type="button">Показать больше отзывов
             </button>
           </div>
         </div>

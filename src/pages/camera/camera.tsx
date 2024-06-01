@@ -32,6 +32,7 @@ function Camera(): JSX.Element {
 
 
   const {previewImgWebp, previewImgWebp2x, previewImg2x, rating, name, reviewCount, price} = camera;
+  const url = 'http://localhost:5173/';
 
   return (
 
@@ -66,8 +67,8 @@ function Camera(): JSX.Element {
               <div className="container">
                 <div className="product__img">
                   <picture>
-                    <source type="image/webp" srcSet={`${previewImgWebp}, ${previewImgWebp2x} 2x`} />
-                    <img src="img/content/img1.jpg" srcSet={`${previewImg2x} 2x`} width="560" height="480" alt={name} />
+                    <source type="image/webp" srcSet={`${url + previewImgWebp}, ${url + previewImgWebp2x} 2x`} />
+                    <img src="img/content/img1.jpg" srcSet={`${url + previewImg2x} 2x`} width="560" height="480" alt={name} />
                   </picture>
                 </div>
                 <div className="product__content">

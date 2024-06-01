@@ -43,8 +43,8 @@ function Card({cameraCard}: CardProps): JSX.Element {
         }} className="btn btn--purple product-card__btn" type="button"
         >Купить
         </button>
-        <a className="btn btn--transparent" href="#">Подробнее
-        </a>
+        <Link to={`camera/${cameraCard.id}`} className="btn btn--transparent">Подробнее
+        </Link>
       </div>
       <ModalWindow active={active} setActiv={setActiv} cameraCard={cameraCard}/>
     </div>

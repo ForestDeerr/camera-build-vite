@@ -32,7 +32,6 @@ function ProductTabs({camera}: productTabsProps): JSX.Element {
         <div className={`tabs__element ${toggle ? '' : 'is-active'}`}>
           <div className="product__tabs-text">
             <p>{camera.description}</p>
-            <p>Вы&nbsp;тоже можете прикоснуться к&nbsp;волшебству аналоговой съёмки, заказав этот чудо-аппарат. Кто знает, может с&nbsp;Das Auge IV&nbsp;начнётся ваш путь к&nbsp;наградам всех престижных кинофестивалей.</p>
           </div>
         </div>
       </div>
