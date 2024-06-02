@@ -11,7 +11,7 @@ import { useAppSelector} from '../../hooks';
 import { fetchCameraAction, fetchRequests } from '../../store/api-actions';
 import { store } from '../../store';
 
-function Camera(): JSX.Element {
+function Product(): JSX.Element {
   const params = useParams();
   const cameraId = params.id;
 
@@ -94,4 +94,4 @@ function Camera(): JSX.Element {
   );
 }
 
-export default Camera;
+export default Product;

@@ -1,6 +1,6 @@
 import { Route, BrowserRouter, Routes} from 'react-router-dom';
 import Catalog from '../pages/catalog/catalog';
-import Camera from '../pages/camera/camera';
+import Product from '../pages/product/product';
 import Error404 from '../pages/errors/error-404';
 
 function App(): JSX.Element {
@@ -8,7 +8,7 @@ function App(): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Catalog />} />
-        <Route path='camera/:id' element={<Camera />} />
+        <Route path='camera/:id' element={<Product />} />
         <Route path='*' element={<Error404 />} />
       </Routes>
     </BrowserRouter>
