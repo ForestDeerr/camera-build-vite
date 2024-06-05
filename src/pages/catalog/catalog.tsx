@@ -1,5 +1,5 @@
 import Header from '../../components/header';
-import Banner from '../../components/banner';
+import Banner from '../../components/banner/banner';
 import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';

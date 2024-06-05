@@ -1,0 +1,26 @@
+.banner img {
+  object-fit: fill;
+}
+.swiper-wrapper {
+  width: 1280px;
+  height: 280px;
+}
+.swiper-pagination {
+  text-align: right;
+}
+.swiper-pagination-bullet {
+  background-color: #F4F4FC;
+  width: 16px;
+  height: 16px;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #7575e2;
+  width: 16px;
+  height: 16px;
+}
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  width: 98%;
+}
+
