@@ -13,10 +13,10 @@ type CardProps = {
 function Card({cameraCard}: CardProps): JSX.Element {
   const {name, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, rating, reviewCount, price } = cameraCard;
 
-  const [active, setActiv] = useState(false);
+  const [active, setActive] = useState(false);
 
   const openPopUp = () =>{
-    setActiv(!active);
+    setActive(!active);
     document.body.style.overflow = 'hidden';
   };
 
@@ -38,15 +38,12 @@ function Card({cameraCard}: CardProps): JSX.Element {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button onClick={()=>{
-          {openPopUp();}
-        }} className="btn btn--purple product-card__btn" type="button"
-        >Купить
+        <button onClick={openPopUp} className="btn btn--purple product-card__btn" type="button">Купить
         </button>
         <Link to={`camera/${cameraCard.id}`} className="btn btn--transparent">Подробнее
         </Link>
       </div>
-      <ModalWindow active={active} setActiv={setActiv} cameraCard={cameraCard}/>
+      <ModalWindow active={active} setActive={setActive} cameraCard={cameraCard}/>
     </div>
 
   );

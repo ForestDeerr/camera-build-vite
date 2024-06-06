@@ -7,19 +7,19 @@ import { isEscapeKey } from '../utils/util';
 
 type ModalWindowProps = {
   active: boolean;
-  setActiv: boolean ;
+  setActive: (isActive: boolean) => void;
   cameraCard: CameraType;
 
 }
 
 
-function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Element {
+function ModalWindow({active, setActive, cameraCard}:ModalWindowProps): JSX.Element {
   const {name, vendorCode, previewImgWebp, previewImgWebp2x, previewImg, previewImg2x, level, category, price } = cameraCard;
 
   const onDocumentKeydown = (e) =>{
     if (isEscapeKey(e)) {
       document.body.style.overflow = '';
-      setActiv(false);
+      setActive(false);
     }
   };
 
@@ -32,7 +32,7 @@ function ModalWindow({active, setActiv, cameraCard}:ModalWindowProps): JSX.Eleme
 
   const closeModal = () =>{
     document.body.style.overflow = '';
-    setActiv(false);
+    setActive(false);
   };
 
   const [number, setNumber] = useState('');
