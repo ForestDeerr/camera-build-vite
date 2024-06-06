@@ -6,13 +6,14 @@ import Footer from '../../components/footer';
 
 import { useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { fetchListCameras } from '../../store/api-actions';
+import { fetchListCameras, fetchPromos } from '../../store/api-actions';
 import { store } from '../../store';
 
 function Catalog(): JSX.Element {
 
   useEffect(()=>{
     store.dispatch(fetchListCameras());
+    store.dispatch(fetchPromos());
   }, []);
 
 

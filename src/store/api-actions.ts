@@ -1,9 +1,10 @@
+import { PromosType } from './../types/promo';
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { CamerasType, CameraType } from '../types/cameras.js';
 import { ReviewsType } from '../types/reviews.js';
-import { getCameras, getCamera, getRequests } from './action';
+import { getCameras, getCamera, getRequests, getPromo } from './action';
 import { APIRoute } from '../const';
 
 
@@ -44,3 +45,16 @@ export const fetchRequests = createAsyncThunk<void, number | string | undefined,
     dispatch(getRequests(data));
   },
 );
+
+export const fetchPromos = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchPromos',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<PromosType>(APIRoute.Promo);
+    dispatch(getPromo(data));
+  },
+);
+

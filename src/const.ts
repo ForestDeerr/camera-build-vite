@@ -1,5 +1,6 @@
 export enum APIRoute {
   Cameras = '/cameras',
+  Promo = '/promo',
 }
 
 export enum Characteristics {
