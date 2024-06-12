@@ -4,6 +4,7 @@ import ProductTabs from '../../components/product-tabs';
 import ReviewBlock from '../../components/review-block';
 import ButtonUp from '../../components/button-up';
 import Footer from '../../components/footer';
+import ProductSimilar from '../../components/product-similar/product-similar';
 
 import { useParams, Link } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -85,6 +86,7 @@ function Product(): JSX.Element {
               </div>
             </section>
           </div>
+          <ProductSimilar />
           <ReviewBlock reviews={reviews} />
         </div>
       </main>
