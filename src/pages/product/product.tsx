@@ -1,4 +1,4 @@
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import CardRate from '../../components/card-rate';
 import ProductTabs from '../../components/product-tabs';
 import ReviewBlock from '../../components/review-block';

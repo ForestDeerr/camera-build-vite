@@ -1,4 +1,7 @@
+import FormSearch from './form-search';
+
 import { Link } from 'react-router-dom';
+
 
 function Header(): JSX.Element {
 
@@ -22,7 +25,7 @@ function Header(): JSX.Element {
             </li>
           </ul>
         </nav>
-
+        <FormSearch />
       </div>
     </header>
   );

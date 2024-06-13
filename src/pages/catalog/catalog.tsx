@@ -1,4 +1,4 @@
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import Banner from '../../components/banner/banner';
 import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
