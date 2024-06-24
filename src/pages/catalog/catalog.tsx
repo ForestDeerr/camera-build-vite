@@ -6,7 +6,7 @@ import Footer from '../../components/footer';
 import CatalogSort from '../../components/catalog-sort';
 
 import { useAppSelector } from '../../hooks';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchListCameras, fetchPromos } from '../../store/api-actions';
 import { store } from '../../store';
 
@@ -25,23 +25,6 @@ function Catalog(): JSX.Element {
     setDiplayedCameras(cameras);
   }, [cameras]
   );
-
-  // const [cen, setCen] = useState(false);
-
-
-  // const visibleTodos = useMemo(
-  //   () => cen ? [...diplayedCameras].sort((a, b) => a.price < b.price ? 1 : -1) : [...diplayedCameras].sort((a, b) => a.price > b.price ? 1 : -1),
-  //   [cen, diplayedCameras]
-  // );
-
-  // const filteredQuest = () => {
-  //   if (diplayedCameras === null) {
-  //     return diplayedCameras;
-  //   } else {
-  //     const filteredQuestByThematic = visibleTodos;
-  //     return filteredQuestByThematic;
-  //   }
-  // };
 
   return (
     <div className="wrapper">
