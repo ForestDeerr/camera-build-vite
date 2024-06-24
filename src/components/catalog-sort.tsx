@@ -12,7 +12,6 @@ function CatalogSort({diplayedCameras, setDiplayedCameras}: productTabsProps): J
 
   const [sortOrder, setSortOrder] = useState('minToMax');
 
-
   function sortFromTo () {
     return sortOrder === 'minToMax' ? [...diplayedCameras].sort((a, b) => a[sortType] > b[sortType] ? 1 : -1) : [...diplayedCameras].sort((a, b) => a[sortType] < b[sortType] ? 1 : -1);
   }

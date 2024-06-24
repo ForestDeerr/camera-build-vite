@@ -22,7 +22,7 @@ function Catalog(): JSX.Element {
   const [diplayedCameras, setDiplayedCameras] = useState(cameras);
 
   useEffect(()=>{
-    setDiplayedCameras(cameras);
+    setDiplayedCameras([...cameras].sort((a, b) => a.price > b.price ? 1 : -1));
   }, [cameras]
   );
 
