@@ -3,9 +3,10 @@ import Banner from '../../components/banner/banner';
 import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';
+import CatalogSort from '../../components/catalog-sort';
 
 import { useAppSelector } from '../../hooks';
-import { useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { fetchListCameras, fetchPromos } from '../../store/api-actions';
 import { store } from '../../store';
 
@@ -18,6 +19,29 @@ function Catalog(): JSX.Element {
 
 
   const cameras = useAppSelector((state)=>state.cameras);
+  const [diplayedCameras, setDiplayedCameras] = useState(cameras);
+
+  useEffect(()=>{
+    setDiplayedCameras(cameras);
+  }, [cameras]
+  );
+
+  // const [cen, setCen] = useState(false);
+
+
+  // const visibleTodos = useMemo(
+  //   () => cen ? [...diplayedCameras].sort((a, b) => a.price < b.price ? 1 : -1) : [...diplayedCameras].sort((a, b) => a.price > b.price ? 1 : -1),
+  //   [cen, diplayedCameras]
+  // );
+
+  // const filteredQuest = () => {
+  //   if (diplayedCameras === null) {
+  //     return diplayedCameras;
+  //   } else {
+  //     const filteredQuestByThematic = visibleTodos;
+  //     return filteredQuestByThematic;
+  //   }
+  // };
 
   return (
     <div className="wrapper">
@@ -33,7 +57,8 @@ function Catalog(): JSX.Element {
                 <div className="catalog__aside"><img src="img/banner.png" />
                 </div>
                 <div className="catalog__content">
-                  <CatalogCards cameras={cameras} />
+                  <CatalogSort diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras} />
+                  <CatalogCards cameras={diplayedCameras} />
                 </div>
               </div>
             </div>
