@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';
 import CatalogSort from '../../components/catalog-sort';
+import CatalogFilter from '../../components/catalog-filter';
 
 import { useAppSelector } from '../../hooks';
 import { useEffect, useState } from 'react';
@@ -37,7 +38,8 @@ function Catalog(): JSX.Element {
             <div className="container">
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
               <div className="page-content__columns">
-                <div className="catalog__aside"><img src="img/banner.png" />
+                <div className="catalog__aside">
+                  <CatalogFilter diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}/>
                 </div>
                 <div className="catalog__content">
                   <CatalogSort diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras} />
