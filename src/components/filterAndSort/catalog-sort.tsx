@@ -1,16 +1,17 @@
 import { useState, useEffect} from 'react';
-import { CamerasType } from '../types/cameras';
+import { CamerasType } from '../../types/cameras';
 
 type productTabsProps = {
   setDiplayedCameras: (isActive: []) => void;
   diplayedCameras: CamerasType;
+  setSortOrder: (isActive: string) => void;
+  sortOrder: string;
+  setSortType: (isActive: string) => void;
+  sortType: string;
 }
 
-function CatalogSort({diplayedCameras, setDiplayedCameras}: productTabsProps): JSX.Element {
+function CatalogSort({diplayedCameras, setDiplayedCameras, sortOrder, setSortOrder , sortType, setSortType}: productTabsProps): JSX.Element {
 
-  const [sortType, setSortType] = useState('price');
-
-  const [sortOrder, setSortOrder] = useState('minToMax');
 
   function sortFromTo () {
     return sortOrder === 'minToMax' ? [...diplayedCameras].sort((a, b) => a[sortType] > b[sortType] ? 1 : -1) : [...diplayedCameras].sort((a, b) => a[sortType] < b[sortType] ? 1 : -1);

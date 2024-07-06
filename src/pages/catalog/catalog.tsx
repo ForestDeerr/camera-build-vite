@@ -3,8 +3,8 @@ import Banner from '../../components/banner/banner';
 import Breadcrumbs from '../../components/breadcrumbs';
 import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';
-import CatalogSort from '../../components/catalog-sort';
-import CatalogFilter from '../../components/catalog-filter';
+import CatalogSort from '../../components/filterAndSort/catalog-sort';
+import CatalogFilters from '../../components/filterAndSort/catalog-filters';
 
 import { useAppSelector } from '../../hooks';
 import { useEffect, useState } from 'react';
@@ -20,12 +20,23 @@ function Catalog(): JSX.Element {
 
 
   const cameras = useAppSelector((state)=>state.cameras);
+
   const [diplayedCameras, setDiplayedCameras] = useState(cameras);
+  const [sortOrder, setSortOrder] = useState('minToMax');
+  const [sortType, setSortType] = useState('price');
+
+  const defaultCamerasSorting = [...cameras].sort((a, b) => a.price > b.price ? 1 : -1);
+
 
   useEffect(()=>{
-    setDiplayedCameras([...cameras].sort((a, b) => a.price > b.price ? 1 : -1));
+    setDiplayedCameras(defaultCamerasSorting);
   }, [cameras]
   );
+
+
+  if(cameras.length === 0) {
+    return <> Loading</>;
+  }
 
   return (
     <div className="wrapper">
@@ -39,10 +50,13 @@ function Catalog(): JSX.Element {
               <h1 className="title title--h2">Каталог фото- и видеотехники</h1>
               <div className="page-content__columns">
                 <div className="catalog__aside">
-                  <CatalogFilter diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}/>
+                  <CatalogFilters
+                    diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}
+                    cameras={cameras} sortOrder={sortOrder} sortType={sortType}
+                  />
                 </div>
                 <div className="catalog__content">
-                  <CatalogSort diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras} />
+                  <CatalogSort diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras} sortOrder={sortOrder} setSortOrder={setSortOrder} sortType={sortType} setSortType={setSortType} />
                   <CatalogCards cameras={diplayedCameras} />
                 </div>
               </div>
