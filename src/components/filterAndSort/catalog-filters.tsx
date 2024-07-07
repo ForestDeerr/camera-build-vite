@@ -1,4 +1,5 @@
 import CatalogFilterType from './catalog-filter-type';
+import CatalogFilterLevel from './catalog-filter-level';
 
 import { CameraType, CamerasType } from '../../types/cameras';
 import { categoryCamera } from '../../const';
@@ -43,9 +44,25 @@ function CatalogFilters({diplayedCameras, setDiplayedCameras, cameras, sortOrder
   const [highPrise, setHighPrise] = useState(maxPrise);
   const [categoryCameras, setcategoryCamera] = useState('');
   const [addFilterType, setAddFilterType] = useState([]);
+  const [addFilterLevel, setAddFilterLevel] = useState([]);
+
+  function filterCamerasLevel () {
+    const newCameras = [...cameras];
+    const feilterCameras: CameraType[] = [];
+    addFilterLevel.forEach((levelFilter)=>{
+      newCameras.map((camera)=>{
+        if (camera.level === levelFilter) {
+          feilterCameras.push(camera);
+        }
+      });
+    });
+    return addFilterLevel.length === 0 ? newCameras : feilterCameras;
+  }
+
+  const camerasLevel = filterCamerasLevel();
 
   function filterCamerasType () {
-    const newCameras = [...cameras];
+    const newCameras = [...camerasLevel];
     const feilterCameras: CameraType[] = [];
     addFilterType.forEach((typeFilter)=>{
       newCameras.map((camera)=>{
@@ -103,7 +120,7 @@ function CatalogFilters({diplayedCameras, setDiplayedCameras, cameras, sortOrder
 
   useEffect(()=>{
     setDiplayedCameras(CamersPrice);
-  }, [lowPrise, highPrise, addFilterType, categoryCameras]
+  }, [lowPrise, highPrise, addFilterType, categoryCameras, addFilterLevel]
   );
 
 
@@ -150,31 +167,9 @@ function CatalogFilters({diplayedCameras, setDiplayedCameras, cameras, sortOrder
         </fieldset>
 
         <CatalogFilterType categoryCameras={categoryCameras} addFilterType={addFilterType} setAddFilterType={setAddFilterType} />
+        <CatalogFilterLevel addFilterLevel={addFilterLevel} setAddFilterLevel={setAddFilterLevel}/>
 
-        <fieldset className="catalog-filter__block">
-          <legend className="title title&#45;&#45;h5">Уровень</legend>
-          <div className="custom-checkbox catalog-filter__item">
-            <label>
-              <input type="checkbox" name="zero" defaultChecked />
-              <span className="custom-checkbox__icon"></span>
-              <span className="custom-checkbox__label">Нулевой</span>
-            </label>
-          </div>
-          <div className="custom-checkbox catalog-filter__item">
-            <label>
-              <input type="checkbox" name="non-professional" />
-              <span className="custom-checkbox__icon"></span>
-              <span className="custom-checkbox__label">Любительский</span>
-            </label>
-          </div>
-          <div className="custom-checkbox catalog-filter__item">
-            <label>
-              <input type="checkbox" name="professional" />
-              <span className="custom-checkbox__icon"></span>
-              <span className="custom-checkbox__label">Профессиональный</span>
-            </label>
-          </div>
-        </fieldset>
+
         <button onClick={()=>filterReset()} className="btn catalog-filter__reset-btn" type="reset">Сбросить фильтры
         </button>
       </form>

@@ -21,3 +21,9 @@ export enum filterType {
   snapshot = 'Моментальная',
   collection = 'Коллекционная'
 }
+
+export enum filterLevel {
+  zero = 'Нулевой',
+  professional = 'Профессиональный',
+  nonprofessional = 'Любительский',
+}
