@@ -8,13 +8,12 @@ import { useState, useEffect, } from 'react';
 
 type productTabsProps = {
   setDiplayedCameras: (isActive: []) => void;
-  diplayedCameras: CamerasType;
   cameras: CamerasType;
   sortOrder: string;
   sortType: string;
 }
 
-function CatalogFilters({diplayedCameras, setDiplayedCameras, cameras, sortOrder, sortType}: productTabsProps): JSX.Element {
+function CatalogFilters({setDiplayedCameras, cameras, sortOrder, sortType}: productTabsProps): JSX.Element {
 
   function findMaxPrise () {
     let maxPrise = 0;
@@ -168,7 +167,6 @@ function CatalogFilters({diplayedCameras, setDiplayedCameras, cameras, sortOrder
 
         <CatalogFilterType categoryCameras={categoryCameras} addFilterType={addFilterType} setAddFilterType={setAddFilterType} />
         <CatalogFilterLevel addFilterLevel={addFilterLevel} setAddFilterLevel={setAddFilterLevel}/>
-
 
         <button onClick={()=>filterReset()} className="btn catalog-filter__reset-btn" type="reset">Сбросить фильтры
         </button>
