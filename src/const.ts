@@ -34,3 +34,9 @@ export const activeFiltersTypeDefault = {
   snapshot: false,
   collection: false,
 };
+
+export const activeFiltersLevelDefaul = {
+  zero: false,
+  professional: false,
+  nonprofessional: false,
+};

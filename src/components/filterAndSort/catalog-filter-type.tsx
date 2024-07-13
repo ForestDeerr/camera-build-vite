@@ -8,16 +8,13 @@ type CatalogFilterTypeProps = {
   satActiveFilters: void;
 }
 
-
 function CatalogFilterType({categoryCameras, addFilterType, setAddFilterType, activeFilters, satActiveFilters}: CatalogFilterTypeProps): JSX.Element {
 
   const categoryCamera = categoryCameras;
 
-
   function checkArr (cb) {
     addFilterType.includes(cb) ? setAddFilterType(addFilterType.filter((typeCamera) => typeCamera !== cb)) : setAddFilterType([...addFilterType, cb]);
   }
-
 
   function changeActiveFilters (typeFilter) {
     const cloneActiveFilters = {};
@@ -30,7 +27,6 @@ function CatalogFilterType({categoryCameras, addFilterType, setAddFilterType, ac
     );
     return cloneActiveFilters;
   }
-
 
   function applyActivFelters (cb) {
     satActiveFilters(changeActiveFilters (cb));

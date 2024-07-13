@@ -3,13 +3,34 @@ import { filterLevel } from '../../const';
 type CatalogFilterLevelProps = {
   addFilterLevel: [];
   setAddFilterLevel: (isActive: []) => void;
+  activeFilters: {};
+  satActiveFilters: void;
 }
 
 
-function CatalogFilterLevel({addFilterLevel, setAddFilterLevel}: CatalogFilterLevelProps): JSX.Element {
+function CatalogFilterLevel({addFilterLevel, setAddFilterLevel, activeFilters, satActiveFilters}: CatalogFilterLevelProps): JSX.Element {
+
+
 
   function checkArr (cb) {
     addFilterLevel.includes(cb) ? setAddFilterLevel(addFilterLevel.filter((typeCamera) => typeCamera !== cb)) : setAddFilterLevel([...addFilterLevel, cb]);
+  }
+
+  function changeActiveFilters (typeFilter) {
+    const cloneActiveFilters = {};
+    Object.assign(cloneActiveFilters, activeFilters);
+    [...Object.keys(activeFilters)].map((type) => {
+      if (type === typeFilter) {
+        cloneActiveFilters[type] = !cloneActiveFilters[type];
+      }
+    }
+    );
+    return cloneActiveFilters;
+  }
+
+  function applyActivFelters (cb) {
+    satActiveFilters(changeActiveFilters (cb));
+    checkArr(filterLevel[cb]);
   }
 
   return (
@@ -20,8 +41,11 @@ function CatalogFilterLevel({addFilterLevel, setAddFilterLevel}: CatalogFilterLe
         <div key={id} className="custom-checkbox catalog-filter__item">
           <label>
             <input onChange={ () => {
-              checkArr(filterLevel[level]);
-            }} type="checkbox" name={level} />
+              applyActivFelters(level);
+            }}
+            checked={activeFilters[level]}
+            type="checkbox" name={level}
+            />
             <span className="custom-checkbox__icon"></span>
             <span className="custom-checkbox__label">{filterLevel[level]}</span>
           </label>
