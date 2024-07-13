@@ -1,5 +1,6 @@
 import CatalogFilterType from './catalog-filter-type';
 import CatalogFilterLevel from './catalog-filter-level';
+import { activeFiltersTypeDefault } from '../../const';
 
 import { CameraType, CamerasType } from '../../types/cameras';
 import { categoryCamera } from '../../const';
@@ -44,6 +45,7 @@ function CatalogFilters({setDiplayedCameras, cameras, sortOrder, sortType}: prod
   const [categoryCameras, setcategoryCamera] = useState('');
   const [addFilterType, setAddFilterType] = useState([]);
   const [addFilterLevel, setAddFilterLevel] = useState([]);
+  const [activeFilters, satActiveFiltersType] = useState(activeFiltersTypeDefault);
 
   function filterCamerasLevel () {
     const newCameras = [...cameras];
@@ -98,6 +100,7 @@ function CatalogFilters({setDiplayedCameras, cameras, sortOrder, sortType}: prod
     setHighPrise(maxPrise);
     setcategoryCamera('');
     setAddFilterType([]);
+    satActiveFiltersType(activeFiltersTypeDefault);
   }
 
   function low (element) {
@@ -165,7 +168,7 @@ function CatalogFilters({setDiplayedCameras, cameras, sortOrder, sortType}: prod
           </div>
         </fieldset>
 
-        <CatalogFilterType categoryCameras={categoryCameras} addFilterType={addFilterType} setAddFilterType={setAddFilterType} />
+        <CatalogFilterType categoryCameras={categoryCameras} addFilterType={addFilterType} setAddFilterType={setAddFilterType} activeFilters={activeFilters} satActiveFilters={satActiveFiltersType} />
         <CatalogFilterLevel addFilterLevel={addFilterLevel} setAddFilterLevel={setAddFilterLevel}/>
 
         <button onClick={()=>filterReset()} className="btn catalog-filter__reset-btn" type="reset">Сбросить фильтры

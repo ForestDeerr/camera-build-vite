@@ -27,3 +27,10 @@ export enum filterLevel {
   professional = 'Профессиональный',
   nonprofessional = 'Любительский',
 }
+
+export const activeFiltersTypeDefault = {
+  digital: false,
+  film: false,
+  snapshot: false,
+  collection: false,
+};

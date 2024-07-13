@@ -4,16 +4,37 @@ type CatalogFilterTypeProps = {
   categoryCameras: string;
   addFilterType: [];
   setAddFilterType: (isActive: []) => void;
+  activeFilters: {};
+  satActiveFilters: void;
 }
 
 
-function CatalogFilterType({categoryCameras, addFilterType, setAddFilterType}: CatalogFilterTypeProps): JSX.Element {
+function CatalogFilterType({categoryCameras, addFilterType, setAddFilterType, activeFilters, satActiveFilters}: CatalogFilterTypeProps): JSX.Element {
 
   const categoryCamera = categoryCameras;
 
 
   function checkArr (cb) {
     addFilterType.includes(cb) ? setAddFilterType(addFilterType.filter((typeCamera) => typeCamera !== cb)) : setAddFilterType([...addFilterType, cb]);
+  }
+
+
+  function changeActiveFilters (typeFilter) {
+    const cloneActiveFilters = {};
+    Object.assign(cloneActiveFilters, activeFilters);
+    [...Object.keys(activeFilters)].map((type) => {
+      if (type === typeFilter) {
+        cloneActiveFilters[type] = !cloneActiveFilters[type];
+      }
+    }
+    );
+    return cloneActiveFilters;
+  }
+
+
+  function applyActivFelters (cb) {
+    satActiveFilters(changeActiveFilters (cb));
+    checkArr(filterType[cb]);
   }
 
   return (
@@ -24,9 +45,9 @@ function CatalogFilterType({categoryCameras, addFilterType, setAddFilterType}: C
         <div key={id} className="custom-checkbox catalog-filter__item">
           <label>
             <input onChange={ () => {
-              checkArr(filterType[type]);
-
+              applyActivFelters(type);
             }}
+            checked={activeFilters[type]}
             type="checkbox" name={type} disabled={type === 'film' && categoryCamera === 'videocamera' || type === 'snapshot' && categoryCamera === 'videocamera'}
             />
             <span className="custom-checkbox__icon"></span>
