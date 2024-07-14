@@ -5,6 +5,7 @@ import CatalogCards from '../../components/catalog-cards';
 import Footer from '../../components/footer';
 import CatalogSort from '../../components/filterAndSort/catalog-sort';
 import CatalogFilters from '../../components/filterAndSort/catalog-filters';
+import Pagination from '../../components/pagination';
 
 import { useAppSelector } from '../../hooks';
 import { useEffect, useState } from 'react';
@@ -51,13 +52,21 @@ function Catalog(): JSX.Element {
               <div className="page-content__columns">
                 <div className="catalog__aside">
                   <CatalogFilters
-                    diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}
-                    cameras={cameras} sortOrder={sortOrder} sortType={sortType}
+                    setDiplayedCameras={setDiplayedCameras}
+                    cameras={cameras}
+                    sortOrder={sortOrder} sortType={sortType}
                   />
                 </div>
                 <div className="catalog__content">
-                  <CatalogSort diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras} sortOrder={sortOrder} setSortOrder={setSortOrder} sortType={sortType} setSortType={setSortType} />
+                  <CatalogSort
+                    diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}
+                    sortOrder={sortOrder} setSortOrder={setSortOrder}
+                    sortType={sortType} setSortType={setSortType}
+                  />
                   <CatalogCards cameras={diplayedCameras} />
+                  <Pagination
+                    diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}
+                  />
                 </div>
               </div>
             </div>
