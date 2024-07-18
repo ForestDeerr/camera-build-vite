@@ -25,15 +25,16 @@ function Catalog(): JSX.Element {
   const [diplayedCameras, setDiplayedCameras] = useState(cameras);
   const [sortOrder, setSortOrder] = useState('minToMax');
   const [sortType, setSortType] = useState('price');
+  const [pagination, setPagination] = useState(0);
 
   const defaultCamerasSorting = [...cameras].sort((a, b) => a.price > b.price ? 1 : -1);
-
 
   useEffect(()=>{
     setDiplayedCameras(defaultCamerasSorting);
   }, [cameras]
   );
 
+  const stepPagination = 9;
 
   if(cameras.length === 0) {
     return <> Loading</>;
@@ -63,9 +64,9 @@ function Catalog(): JSX.Element {
                     sortOrder={sortOrder} setSortOrder={setSortOrder}
                     sortType={sortType} setSortType={setSortType}
                   />
-                  <CatalogCards cameras={diplayedCameras} />
+                  <CatalogCards cameras={diplayedCameras.slice(pagination, pagination + stepPagination)} />
                   <Pagination
-                    diplayedCameras={diplayedCameras} setDiplayedCameras={setDiplayedCameras}
+                    pagination={pagination} setPagination={setPagination} diplayedCameras={diplayedCameras}
                   />
                 </div>
               </div>
