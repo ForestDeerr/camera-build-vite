@@ -1,4 +1,5 @@
 import FormSearch from './form-search';
+import BasketIcon from './basket-icon';
 
 import { Link } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ function Header(): JSX.Element {
           </ul>
         </nav>
         <FormSearch />
+        <BasketIcon />
       </div>
     </header>
   );
