@@ -5,6 +5,9 @@ import { isValidPhoneNumber } from '../utils/is-Valid-Phone-Number';
 import { formatPhoneNumber } from '../utils/format-Phone-Number';
 import { isEscapeKey } from '../utils/util';
 
+import { remBasket } from '../store/api-actions';
+import { store } from '../store';
+
 type ModalWindowProps = {
   active: boolean;
   setActive: (isActive: boolean) => void;
@@ -79,8 +82,10 @@ function ModalWindow({active, setActive, cameraCard}:ModalWindowProps): JSX.Elem
             {!isValidPhoneNumber(number) && <p className="custom-input__error" style={{opacity:'1' }}>Нужно указать номер </p>}
           </div>
           <div className="modal__buttons">
+
             {isValidPhoneNumber(number) &&
             <button onClick={()=>{
+              store.dispatch(remBasket(cameraCard));
               formatPhoneNumber(number);
               closeModal();
             }} className="btn btn--purple modal__btn modal__btn--fit-width" type="button"

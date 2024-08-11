@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getCameras, getCamera, getRequests, getPromo} from './action';
+import {getCameras, getCamera, getRequests, getPromo, getBasket} from './action';
 import { CamerasType, CameraType } from '../types/cameras';
 import { ReviewsType } from '../types/reviews';
 import { PromosType } from '../types/promo';
@@ -9,6 +9,7 @@ type InitalState = {
   camera: CameraType | null;
   reviews: ReviewsType | null;
   promo: PromosType | null;
+  basket: CamerasType | null;
 }
 
 const initialState: InitalState = {
@@ -16,6 +17,7 @@ const initialState: InitalState = {
   camera: null,
   reviews: null,
   promo: null,
+  basket: [],
 };
 
 
@@ -32,6 +34,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(getPromo, (state, action) => {
       state.promo = action.payload;
+    })
+    .addCase(getBasket, (state, action) => {
+      state.basket = action.payload;
     });
 });
 

@@ -1,12 +1,13 @@
+import { store } from './index';
 import { PromosType } from './../types/promo';
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { CamerasType, CameraType } from '../types/cameras.js';
 import { ReviewsType } from '../types/reviews.js';
-import { getCameras, getCamera, getRequests, getPromo } from './action';
+import { getCameras, getCamera, getRequests, getPromo, getBasket } from './action';
 import { APIRoute } from '../const';
-
+import { useAppSelector } from '../hooks';
 
 export const fetchListCameras = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -58,3 +59,11 @@ export const fetchPromos = createAsyncThunk<void, undefined, {
   },
 );
 
+export const remBasket = createAsyncThunk(
+  'data/loadBasket',
+  (fff) => {
+    const basket = useAppSelector((state)=>state.basket);
+    store.dispatch(getBasket(basket.push(fff)));
+    console.log(basket);
+  },
+);

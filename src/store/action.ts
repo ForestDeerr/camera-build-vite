@@ -8,3 +8,5 @@ export const getCameras = createAction<CamerasType>('date/loadCameras');
 export const getCamera = createAction<CameraType>('data/loadCamera');
 export const getRequests = createAction<ReviewsType>('data/loadRequest');
 export const getPromo = createAction<PromosType>('data/loadPromo');
+
+export const getBasket = createAction<CamerasType>('data/loadBasket');
